@@ -1,0 +1,16 @@
+{
+    "dsn":"postgresql://kursUser:kursPswd@localhost:5432/TEST",
+    "port": 8080,
+    "limiter": {
+        "rps": 100,
+        "burst": 100,
+        "enabled": true
+    },
+    "http_client": {
+        "request_timeout": 1000
+    },
+    "log": {
+        "level": "debug",
+        "format": "json"
+    }
+}

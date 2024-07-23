@@ -1,0 +1,13 @@
+###
+# request to save currency
+GET http://localhost:8080/currency/save/01-01-2022
+
+
+###
+# request to get all currency for date
+GET http://localhost:8080/currency/01-01-2022
+
+
+###
+# request to get currency by date and code
+GET http://localhost:8080/currency/01-01-2022/USD

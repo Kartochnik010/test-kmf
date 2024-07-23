@@ -1,0 +1,108 @@
+basePath: /
+definitions:
+  github_com_kartochnik010_test-kmf_internal_domain_models.Rate:
+    properties:
+      code:
+        type: string
+      date:
+        type: string
+      title:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_kartochnik010_test-kmf_internal_pkg_js.JSON:
+    additionalProperties: true
+    type: object
+host: localhost:8080
+info:
+  contact:
+    name: Telegram
+    url: https://t.me/ilyas_amantaev
+  description: This is a simple currency API
+  title: Currency API
+  version: "1.0"
+paths:
+  /currency/{date}/{code}:
+    get:
+      consumes:
+      - application/json
+      description: Get rates by date
+      parameters:
+      - description: date
+        format: date
+        in: path
+        name: date
+        required: true
+        type: string
+      - description: code
+        format: code
+        in: path
+        name: code
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_kartochnik010_test-kmf_internal_pkg_js.JSON'
+            - properties:
+                rates:
+                  items:
+                    $ref: '#/definitions/github_com_kartochnik010_test-kmf_internal_domain_models.Rate'
+                  type: array
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_kartochnik010_test-kmf_internal_pkg_js.JSON'
+            - properties:
+                error:
+                  type: string
+              type: object
+      summary: Get rates
+      tags:
+      - rates
+  /currency/save/{date}:
+    get:
+      consumes:
+      - application/json
+      description: Fetch and store rates by date
+      parameters:
+      - description: date
+        in: path
+        name: date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_kartochnik010_test-kmf_internal_pkg_js.JSON'
+            - properties:
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_kartochnik010_test-kmf_internal_pkg_js.JSON'
+            - properties:
+                error:
+                  type: string
+              type: object
+      summary: Fetch and store rates
+      tags:
+      - rates
+produces:
+- application/json
+schemes:
+- http
+swagger: "2.0"

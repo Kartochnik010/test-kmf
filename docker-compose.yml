@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    tty: true
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      # PGDATA: "/var/lib/postgresql/data/pgdata"
+      POSTGRES_PASSWORD: kursPswd
+      POSTGRES_DB: TEST
+      POSTGRES_USER: kursUser
+      
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
